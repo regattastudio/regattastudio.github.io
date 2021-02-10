@@ -69,7 +69,7 @@
                 var classResults = resultsData.class_results[className];
                 console.log(classResults);
 
-                var resultsTable = '<table class="w3-table-all"><tr><th>Pos</th><th>Name</th><th>Sail Number</th><th class="w3-hide-small">Club</th>';
+                var resultsTable = '<table class="w3-table-all"><tr><th>Pos</th><th>Name</th><th class="w3-hide-small">Sail Number</th><th class="w3-hide-small w3-hide-medium">Club</th>';
                 for (var i = 0; i < classResults.num_races; i++) {
                     resultsTable += `<th>R${i+1}</th>`; 
                 }
@@ -83,11 +83,11 @@
                     if (competitor.crew && competitor.crew.length > 0) {
                         resultsTable += `<br>${competitor.crew[0]}`;
                     }
-                    resultsTable += `</td><td>${competitor.sail_number}</td><td class="w3-hide-small">${competitor.club}</td>`;
+                    resultsTable += `</td><td class="w3-hide-small">${competitor.sail_number}</td><td class="w3-hide-small w3-hide-medium">${competitor.club}</td>`;
 
                     for (var score of competitor.scores) {
                         resultsTable += score.discard ? `<td style="text-decoration:line-through">` : "<td>";
-                        resultsTable += score.abbreviations && score.abbreviations.length > 0 ? score.abbreviations.join('+') : score.points.toFixed(1);
+                        resultsTable += score.abbreviations && score.abbreviations.length > 0 ? score.abbreviations.join('<br>') : score.points.toFixed(1);
                         resultsTable += '</td>';
 
                     }

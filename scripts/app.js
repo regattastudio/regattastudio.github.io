@@ -27,18 +27,20 @@
     const eventId = urlParams.get('event');
     console.log(eventId);
 
-    const className = urlParams.get('class');
-    console.log(className);
+    const classFilter = urlParams.get('class');
+    console.log(classFilter);
 
-    var day = urlParams.get('day');
-    console.log(day);
+    var dayFilter = urlParams.get('day');
+    console.log(dayFilter);
 
-    if (!eventId || !className) {
-        return resultsTableDiv.innerHTML = 'Missing mandatory parameter';
+    var dayName = '';
+
+    if (!eventId) {
+        return resultsTableDiv.innerHTML = 'Invalid search query';
     }
 
-    if (!day) {
-        day = 'day1';
+    if (!dayFilter) {
+        dayFilter = 'day1';
     }
 
     firestore.collection("events").doc(eventId).get().then(doc => {
@@ -55,24 +57,46 @@
             } else {
                 eventDatesDiv.innerText = `${eventData.start_date.toDate().toDateString()}`;
             }
+
+            if (eventData.series) {
+                dayName = dayFilter.includes('day') ? ' · Day ' + dayFilter.substring(dayFilter.length - 1, dayFilter.length) : ' · Overall';
+            }
         }
     });
 
 
-    firestore.collection("events").doc(eventId).collection("results").doc(day).onSnapshot(function (doc) {
+    firestore.collection("events").doc(eventId).collection("results").doc(dayFilter).onSnapshot(function (doc) {
+        var resultsTable = '';
+
         if (doc && doc.exists) {
             resultsData = doc.data();
 
-            if (!resultsData.class_results[className]) {
-                resultsTableDiv.innerHTML = `<div class="w3-container w3-amber w3-padding-large">No ${className} results found for ${day}</div>`;
-            } else {
+            if (classFilter) {
+                resultsData.class_results = { [classFilter]: resultsData.class_results[classFilter] };
+            }
+
+            for (var className in resultsData.class_results) {
                 var classResults = resultsData.class_results[className];
+
+                if (!classResults) {
+                    continue;
+                }
+
                 console.log(classResults);
 
-                var resultsTable = '<table class="w3-table-all"><tr><th>Pos</th><th>Name</th><th class="w3-hide-small">Sail Number</th><th class="w3-hide-small w3-hide-medium">Club</th>';
-                for (var i = 0; i < classResults.num_races; i++) {
-                    resultsTable += `<th>R${i+1}</th>`; 
+                resultsTable += `<h3 class="w3-padding-small">${className}${dayName}</h3>`;
+                resultsTable += '<table class="w3-table-all"><tr><th>Pos</th><th>Name</th><th class="w3-hide-small">Sail Number</th><th class="w3-hide-small w3-hide-medium">Club</th>';
+
+                if (classResults.num_days != null) {
+                    for (var i = 0; i < classResults.num_days; i++) {
+                        resultsTable += `<th>D${i+1}</th>`; 
+                    }
+                } else {
+                    for (var i = 0; i < classResults.num_races; i++) {
+                        resultsTable += `<th>R${i+1}</th>`; 
+                    }
                 }
+
                 resultsTable += '<th>Points</th></tr>'
 
                 for (var competitor of classResults.competitors) {
@@ -96,9 +120,9 @@
                     resultsTable += '</tr>';
                 }
 
-                resultsTable += '</table>';    
+                resultsTable += '</table><br>';
                 resultsTableDiv.innerHTML = resultsTable;
-            }   
+            }
         } else {
             resultsTableDiv.innerHTML = `<div class="w3-container w3-amber w3-padding-large">No results found for ${day}</div>`;
         }

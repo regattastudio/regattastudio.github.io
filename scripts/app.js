@@ -48,6 +48,7 @@
             eventData = doc.data();
 
             eventNameDiv.innerText = eventData.name;
+            document.title = `${eventData.name} Results`;
             eventLocationDiv.innerText = eventData.location_name;
 
             var startDate = `${eventData.start_date.toDate().getMonth()} ${eventData.start_date.toDate().getFullYear()}`;

@@ -105,8 +105,10 @@
 
                     resultsTable += `<td style="width:50px"><div class="w3-teal w3-circle w3-center">${competitor.position}</div></td><td>${competitor.skipper}`;
                     
-                    if (competitor.crew && competitor.crew.length > 0) {
-                        resultsTable += `<br>${competitor.crew[0]}`;
+                    if (competitor.crew) {
+                        for (crew of competitor.crew.slice(0,10)) {
+                            resultsTable += `<br>${crew}`;
+                        }
                     }
                     resultsTable += `</td><td class="w3-hide-small">${competitor.sail_number}</td><td class="w3-hide-small w3-hide-medium">${competitor.club}</td>`;
 

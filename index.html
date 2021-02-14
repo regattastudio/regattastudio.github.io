@@ -52,8 +52,10 @@ img {margin-bottom: -8px;}
       </div>
     </div>
   </div>
+  <!--
   <a class="w3-button w3-black w3-display-right w3-margin-right w3-round w3-hide-small w3-hover-light-grey" onclick="plusDivs(1)">Take Tour <i class="fa fa-angle-right"></i></a>
   <a class="w3-button w3-block w3-black w3-hide-large w3-hide-medium" onclick="plusDivs(1)">Take Tour <i class="fa fa-angle-right"></i></a>
+  -->
 </header>
 
 <!-- The App Section -->
@@ -89,7 +91,7 @@ img {margin-bottom: -8px;}
     <div class="w3-container w3-white">
       <i onclick="document.getElementById('download').style.display='none'" class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
       <h2 class="w3-wide">DOWNLOAD</h2>
-      <p>Get it from on AppStore or Google Play</p>
+      <p>Get it on the App Store or Google Play</p>
       <div class="w3-row">
         <div class="w3-half w3-container">
           <a href="https://testflight.apple.com/join/2FvNtzID">
@@ -131,7 +133,8 @@ img {margin-bottom: -8px;}
 <script>
 // Slideshow
 var slideIndex = 1;
-showDivs(slideIndex);
+//showDivs(slideIndex);
+showSlides();
 
 function plusDivs(n) {
   showDivs(slideIndex += n);
@@ -145,7 +148,20 @@ function showDivs(n) {
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";  
   }
-  x[slideIndex-1].style.display = "block";  
+  x[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 2000);
+}
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 10000); // Change image every 2 seconds
 }
 </script>
 

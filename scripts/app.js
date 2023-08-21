@@ -90,15 +90,15 @@
 
                 if (classResults.num_days != null) {
                     for (var i = 0; i < classResults.num_days; i++) {
-                        resultsTable += `<th>D${i+1}</th>`; 
+                        resultsTable += `<th style="text-align: center">D${i+1}</th>`;
                     }
                 } else {
                     for (var i = 0; i < classResults.num_races; i++) {
-                        resultsTable += `<th>R${i+1}</th>`; 
+                        resultsTable += `<th style="text-align: center">R${i+1}</th>`;
                     }
                 }
 
-                resultsTable += '<th>Points</th></tr>'
+                resultsTable += '<th style="text-align: center">Points</th></tr>'
 
                 for (var competitor of classResults.competitors) {
                     resultsTable += '<tr>';
@@ -113,13 +113,14 @@
                     resultsTable += `</td><td class="w3-hide-small">${competitor.sail_number}</td><td class="w3-hide-small w3-hide-medium">${competitor.club}</td>`;
 
                     for (var score of competitor.scores) {
-                        resultsTable += score.discard ? `<td style="text-decoration:line-through">` : "<td>";
-                        resultsTable += score.abbreviations && score.abbreviations.length > 0 ? score.abbreviations.join('<br>') : score.points.toFixed(1);
+                        resultsTable += score.discard ? `<td style="text-decoration:line-through; text-align: center">` : `<td style="text-align: center">`;
+                        formattedScore = Number.isInteger(score.points) ? score.points.toFixed(0) : score.points.toFixed(1);
+                        resultsTable += score.abbreviations && score.abbreviations.length > 0 ? score.abbreviations.join('<br>') : formattedScore;
                         resultsTable += '</td>';
 
                     }
 
-                    resultsTable += `<td>${competitor.net_total.toFixed(1)}</td>`;
+                    resultsTable += `<td style="text-align: center; font-weight: bold">${Number.isInteger(competitor.net_total) ? competitor.net_total.toFixed(0) : competitor.net_total.toFixed(1)}</td>`;
                     resultsTable += '</tr>';
                 }
 

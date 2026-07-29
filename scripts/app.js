@@ -30,6 +30,8 @@
     const classFilter = urlParams.get('class');
     console.log(classFilter);
 
+    const hideSailNumber = urlParams.get('hidesailnumber') != null;
+
     var dayFilter = urlParams.get('day');
     console.log(dayFilter);
 
@@ -83,10 +85,24 @@
                     continue;
                 }
 
+                let hideClub = true;
+                for (var competitor of classResults.competitors) {
+                    if (competitor.club) {
+                        hideClub = false;
+                        break;
+                    }
+                }
+
                 console.log(classResults);
 
                 resultsTable += `<h3 class="w3-padding-small">${className}${dayName}</h3>`;
-                resultsTable += '<table class="w3-table-all"><tr><th>Pos</th><th>Name</th><th class="w3-hide-small">Sail Number</th><th class="w3-hide-small w3-hide-medium">Club</th>';
+                resultsTable += '<table class="w3-table-all"><tr><th>Pos</th><th>Name</th>';
+                if (!hideSailNumber) {
+                    resultsTable += '<th class="w3-hide-small">Sail Number</th>';
+                }
+                if (!hideClub) {
+                    resultsTable += '<th class="w3-hide-small w3-hide-medium">Club</th>';
+                }
 
                 if (classResults.num_days != null) {
                     for (var i = 0; i < classResults.num_days; i++) {
@@ -100,6 +116,7 @@
 
                 resultsTable += '<th style="text-align: center">Points</th></tr>'
 
+
                 for (var competitor of classResults.competitors) {
                     resultsTable += '<tr>';
 
@@ -110,7 +127,14 @@
                             resultsTable += `<br>${crew}`;
                         }
                     }
-                    resultsTable += `</td><td class="w3-hide-small">${competitor.sail_number}</td><td class="w3-hide-small w3-hide-medium">${competitor.club}</td>`;
+
+                    if (!hideSailNumber) {
+                        resultsTable += `</td><td class="w3-hide-small">${competitor.sail_number}</td>`
+                    }
+
+                    if (!hideClub) {
+                        resultsTable += `<td class="w3-hide-small w3-hide-medium">${competitor.club}</td>`;
+                    }
 
                     for (var score of competitor.scores) {
                         resultsTable += score.discard ? `<td style="text-decoration:line-through; text-align: center">` : `<td style="text-align: center">`;

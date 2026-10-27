@@ -118,7 +118,7 @@
                 console.log(classResults);
 
                 resultsTable += `<h3 class="class-title">${className}${dayName}</h3>`;
-                resultsTable += '<div class="table-wrap"><table class="results-table"><thead><tr><th>Pos</th><th>Name</th>';
+                resultsTable += '<div class="table-wrap"><table class="results-table"><thead><tr><th class="pos">Pos</th><th class="name">Name</th>';
                 if (!hideSailNumber) {
                     resultsTable += '<th class="hide-sm">Sail Number</th>';
                 }
@@ -136,17 +136,17 @@
                     }
                 }
 
-                resultsTable += '<th class="score">Points</th></tr></thead><tbody>'
+                resultsTable += '<th class="score total">Points</th></tr></thead><tbody>'
 
 
                 for (var competitor of classResults.competitors) {
                     resultsTable += '<tr>';
 
-                    resultsTable += `<td style="width:50px"><div class="pos-badge pos-${competitor.position}">${competitor.position}</div></td><td>${competitor.skipper}`;
+                    resultsTable += `<td class="pos"><div class="pos-badge pos-${competitor.position}">${competitor.position}</div></td><td class="name">${competitor.skipper}`;
                     
                     if (competitor.crew) {
                         for (crew of competitor.crew.slice(0,10)) {
-                            resultsTable += `<br>${crew}`;
+                            resultsTable += `<span class="crew">${crew}</span>`;
                         }
                     }
 

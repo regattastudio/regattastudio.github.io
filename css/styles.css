@@ -546,7 +546,7 @@ section { padding: 110px 0; }
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: clamp(24px, 4vw, 48px);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 .panel:empty::before {
   content: "Loading…";
@@ -587,8 +587,6 @@ section { padding: 110px 0; }
   font-size: .95rem;
 }
 .results-table th {
-  position: sticky;
-  top: 0;
   padding: 14px 12px;
   background: var(--deep);
   color: var(--white);
@@ -602,6 +600,7 @@ section { padding: 110px 0; }
   padding: 12px;
   border-bottom: 1px solid #e6eeed;
   vertical-align: middle;
+  background: var(--white);
 }
 .results-table tr:last-child td { border-bottom: 0; }
 .results-table tbody tr:nth-child(even) td { background: #fafcfc; }
@@ -632,6 +631,31 @@ section { padding: 110px 0; }
 .show-points .abbr-points { opacity: 1; transform: scale(1); }
 .results-table .total { text-align: center; font-weight: 700; color: var(--teal); }
 
+/* Pos and Name stay pinned while the race columns scroll sideways */
+.results-table .pos,
+.results-table .name {
+  position: sticky;
+  z-index: 1;
+}
+.results-table .pos {
+  left: 0;
+  width: 52px;
+  min-width: 52px;
+  max-width: 52px;
+  padding-right: 6px;
+}
+.results-table .name {
+  left: 52px;
+  min-width: 120px;
+}
+.results-table .total {
+  position: sticky;
+  right: 0;
+  z-index: 1;
+}
+.results-table th.pos, .results-table th.name, .results-table th.total { background: var(--deep); color: var(--white); }
+.results-table .crew { display: block; font-size: .85em; color: var(--muted); }
+
 .pos-badge {
   display: grid;
   place-items: center;
@@ -646,6 +670,21 @@ section { padding: 110px 0; }
 .pos-1 { background: linear-gradient(135deg, #ffd86b, #e3a008); box-shadow: 0 4px 12px rgba(227, 160, 8, .45); }
 .pos-2 { background: linear-gradient(135deg, #d9dee3, #8f9aa5); box-shadow: 0 4px 12px rgba(143, 154, 165, .45); }
 .pos-3 { background: linear-gradient(135deg, #e7a977, #b2622c); box-shadow: 0 4px 12px rgba(178, 98, 44, .45); }
+
+@media (max-width: 600px) {
+  .page .container { width: calc(100% - 20px); }
+  .page-header { padding: 18px 0 72px; }
+  .page-header .brand { margin-bottom: 24px; }
+  .page-body { margin-top: -48px; }
+  #resultsTable.panel { padding: 16px 12px; }
+  .class-title { font-size: 1.1rem; margin: 28px 0 10px; }
+  .results-table { font-size: .88rem; }
+  .results-table th { padding: 11px 8px; font-size: .75rem; }
+  .results-table td { padding: 10px 8px; }
+  .results-table .pos { width: 42px; min-width: 42px; max-width: 42px; padding-right: 4px; }
+  .results-table .name { left: 42px; min-width: 104px; }
+  .pos-badge { width: 28px; height: 28px; font-size: .8rem; }
+}
 
 .notice {
   padding: 18px 22px;

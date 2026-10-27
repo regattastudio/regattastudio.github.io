@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSWVYXKC6G"></script>
@@ -11,171 +11,274 @@
   gtag('config', 'G-JSWVYXKC6G');
 </script>
 
-<title>Regatta Studio</title>
+<title>Regatta Studio · On-the-water scoring made easy</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size: 16px;}
-img {margin-bottom: -8px;}
-.mySlides {display: none;}
-</style>
+<meta name="description" content="Regatta Studio is a free app for scoring one-design sailboat racing from your phone. Real-time results, simple entries, and push notifications for competitors.">
+<meta name="theme-color" content="#008080">
+<meta property="og:title" content="Regatta Studio">
+<meta property="og:description" content="Free on-the-water scoring for club racing. Results update in real time.">
+<meta property="og:image" content="https://regatta.studio/images/laser_start.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="/css/styles.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 </head>
 
-<body class="w3-content w3-black" style="max-width:1500px;">
+<body>
 
-<!-- Header with Slideshow -->
-<header class="w3-display-container w3-center">
-  <button class="w3-button w3-block w3-green w3-hide-large w3-hide-medium" onclick="document.getElementById('download').style.display='block'">Download <i class="fa fa-android"></i> <i class="fa fa-apple"></i> </button>
-  <div class="mySlides w3-animate-opacity">
-    <img class="w3-image" src="images/laser_start.jpg" alt="Image 1" style="min-width:250px" width="1500" height="1000">
-    <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
-      <div class="w3-black w3-hover-opacity-off w3-padding-large w3-round-large">
-        <h1 class="w3-xlarge w3-text-green">On-the-water scoring</h1>
-        <hr class="w3-opacity">
-        <p>Free to download and use</p>
-        <p><button class="w3-button w3-block w3-green w3-round" onclick="document.getElementById('download').style.display='block'">Download <i class="fa fa-android"></i> <i class="fa fa-apple"></i> </button></p>
+<!-- Nav -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <a class="brand" href="#top"><img src="images/regattastudio.png" alt="">Regatta Studio</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a class="btn btn-primary" href="#download"><i class="fa-solid fa-download"></i> Get the app</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="top">
+  <div class="hero-slides">
+    <img class="active" src="images/laser_start.jpg" alt="ILCA fleet at the start line">
+    <img src="images/420_mark_rounding.jpg" alt="420s rounding a mark" loading="lazy">
+    <img src="images/tesod_start.jpg" alt="Fleet start on a sunny day" loading="lazy">
+  </div>
+
+  <div class="container">
+    <div class="hero-content">
+      <span class="pill"><span class="dot"></span> Free for iOS &amp; Android</span>
+      <h1>
+        <span class="rotator" id="rotator">
+          <span class="active">Scoring</span>
+          <span>Entries</span>
+          <span>Results</span>
+          <span>Notices</span>
+        </span>
+        made <span class="highlight">a breeze.</span>
+      </h1>
+      <p class="lead">Ditch the pencils and soggy clipboards. Score races right from the water and share live results with every competitor in seconds.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#download"><i class="fa-solid fa-download"></i> Download free</a>
+        <a class="btn btn-ghost" href="#features">See what it does <i class="fa-solid fa-arrow-down"></i></a>
       </div>
     </div>
   </div>
-  <div class="mySlides w3-animate-opacity">
-    <img class="w3-image" src="images/420_mark_rounding.jpg" alt="Image 2" style="min-width:250px" width="1500" height="1000">
-    <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
-      <div class="w3-black w3-hover-opacity-off w3-padding-large w3-round-large">
-        <h1 class="w3-xlarge w3-text-red">Simple entry management</h1>
-        <hr class="w3-opacity">
-        <p>Free to download and use</p>
-        <p><button class="w3-button w3-block w3-red w3-round" onclick="document.getElementById('download').style.display='block'">Download <i class="fa fa-android"></i> <i class="fa fa-apple"></i> <i class="fa fa-windows"></i></button></p>
-      </div>
-    </div>
-  </div>
-  <div class="mySlides w3-animate-opacity">
-    <img class="w3-image" src="images/tesod_start.jpg" alt="Image 3" style="min-width:250px" width="1500" height="1000">
-    <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
-      <div class="w3-black w3-hover-opacity-off w3-padding-large w3-round-large">
-        <h1 class="w3-xlarge w3-text-indigo">Push notifications to competitors</h1>
-        <hr class="w3-opacity">
-        <p>Free to download and use</p>
-        <p><button class="w3-button w3-block w3-indigo w3-round" onclick="document.getElementById('download').style.display='block'">Download <i class="fa fa-android"></i> <i class="fa fa-apple"></i> <i class="fa fa-windows"></i></button></p>
-      </div>
-    </div>
-  </div>
-  <!--
-  <a class="w3-button w3-black w3-display-right w3-margin-right w3-round w3-hide-small w3-hover-light-grey" onclick="plusDivs(1)">Take Tour <i class="fa fa-angle-right"></i></a>
-  <a class="w3-button w3-block w3-black w3-hide-large w3-hide-medium" onclick="plusDivs(1)">Take Tour <i class="fa fa-angle-right"></i></a>
-  -->
+
+  <div class="hero-dots" id="heroDots"></div>
+
+  <svg class="waves" viewBox="0 24 150 28" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <path id="wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/>
+    </defs>
+    <g class="parallax">
+      <use href="#wave" x="48" y="0" fill="rgba(255,255,255,.7)"/>
+      <use href="#wave" x="48" y="3" fill="rgba(255,255,255,.5)"/>
+      <use href="#wave" x="48" y="5" fill="rgba(255,255,255,.3)"/>
+      <use href="#wave" x="48" y="7" fill="#fff"/>
+    </g>
+  </svg>
 </header>
 
-<!-- The App Section -->
-<div class="w3-padding-64 w3-white">
-  <div class="w3-row-padding">
-    <div class="w3-col l8 m6">
-      <h1 class="w3-jumbo"><b>Regatta Studio</b></h1>
-      <h1 class="w3-xxxlarge w3-text-green"><b>Make scoring a breeze</b></h1>
-      <p><span class="w3-xlarge">Regatta Studio</span> is a free cloud-based app for scoring informal one-design racing from your cellphone or tablet.
-        Get rid of your pencils, clipboards, and complicated scoring programs. Scores are captured in realtime on the app and results are updated almost instantly.
-        Competitors can create entries, view notices, and check results from their mobile devices.
-        Regatta Studio is ideal for informal club racing and virtual sailing.</p>
-      <button class="w3-button w3-light-grey w3-padding-large w3-section w3-hide-small" onclick="document.getElementById('download').style.display='block'">
-        <i class="fa fa-download"></i> Download Application
-      </button>
-      <p>Available for <i class="fa fa-android w3-xlarge w3-text-green"></i> <i class="fa fa-apple w3-xlarge"></i></p>
-    </div>
-    <div class="w3-col l4 m6">
-      <img src="images/results_screenshot.png" class="w3-image w3-right w3-hide-small" width="335" height="471">
-      <div class="w3-center w3-hide-large w3-hide-medium">
-        <button class="w3-button w3-block w3-padding-large" onclick="document.getElementById('download').style.display='block'">
-          <i class="fa fa-download"></i> Download Application
-        </button>
-        <img src="images/results_screenshot.png" class="w3-image w3-margin-top" width="335" height="471">
+<!-- Features -->
+<section id="features">
+  <div class="container center">
+    <span class="eyebrow reveal">Why sailors love it</span>
+    <h2 class="section-title reveal">Everything your race committee needs</h2>
+    <p class="section-intro reveal">Regatta Studio is a free, cloud-based app for scoring informal one-design racing from your phone or tablet. Perfect for club racing and virtual sailing.</p>
+
+    <div class="features">
+      <div class="card accent-teal reveal">
+        <div class="icon"><i class="fa-solid fa-stopwatch"></i></div>
+        <h3>On-the-water scoring</h3>
+        <p>Record finishes as boats cross the line. Results are calculated almost instantly.</p>
+      </div>
+      <div class="card accent-coral reveal" style="--delay:.1s">
+        <div class="icon"><i class="fa-solid fa-users"></i></div>
+        <h3>Simple entry management</h3>
+        <p>Competitors register themselves from their own devices. No more transcribing sign-up sheets.</p>
+      </div>
+      <div class="card accent-sun reveal" style="--delay:.2s">
+        <div class="icon"><i class="fa-solid fa-bell"></i></div>
+        <h3>Push notifications</h3>
+        <p>Post notices and course changes and every competitor gets pinged right away.</p>
+      </div>
+      <div class="card accent-sky reveal" style="--delay:.3s">
+        <div class="icon"><i class="fa-solid fa-cloud"></i></div>
+        <h3>Everything in the cloud</h3>
+        <p>Multiple scorers can enter data at the same time, and everyone always sees the latest.</p>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- Modal -->
-<div id="download" class="w3-modal w3-animate-opacity">
-  <div class="w3-modal-content" style="padding:32px">
-    <div class="w3-container w3-white">
-      <i onclick="document.getElementById('download').style.display='none'" class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
-      <h2 class="w3-wide">DOWNLOAD</h2>
-      <p>Get it on the App Store or Google Play</p>
-      <div class="w3-row">
-        <div class="w3-half w3-container">
-          <a href="https://apps.apple.com/app/regatta-studio/id1552617490">
-            <img src="images/apple_app_store.png" class="w3-image w3-margin-top" width="335" height="471">
-           </a> 
-        </div>
-        <div class="w3-half w3-container">
-          <a href="https://play.google.com/store/apps/details?id=studio.regatta">
-            <img src="images/google_play.png" class="w3-image w3-margin-top" width="335" height="471">
-          </a>
-        </div>
+<!-- Showcase -->
+<section class="showcase">
+  <div class="container">
+    <div class="split">
+      <div class="split-media reveal">
+        <div class="blob"></div>
+        <img class="phone" src="images/results_screenshot.png" alt="Results screen in the Regatta Studio app" width="607" height="1281" loading="lazy">
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Live results</span>
+        <h2 class="section-title">Results before you're back at the dock</h2>
+        <p class="section-intro">Scores are captured in real time and standings update as soon as each race is scored. Competitors can check results from the water, the parking lot, or the bar.</p>
+        <ul class="checklist">
+          <li><i class="fa-solid fa-check"></i> Discards, penalties and codes like OCS, DSQ and UFD</li>
+          <li><i class="fa-solid fa-check"></i> Multiple classes and multi-day series</li>
+          <li><i class="fa-solid fa-check"></i> Shareable results page for your club website</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split reverse">
+      <div class="split-media reveal">
+        <div class="blob coral"></div>
+        <img class="phone" src="images/event_view_screenshot.png" alt="Event setup screen in the Regatta Studio app" width="607" height="1281" loading="lazy" style="animation-delay:-3s">
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Works offline</span>
+        <h2 class="section-title">Spotty signal? No problem.</h2>
+        <p class="section-intro">Data is cached on your device during network interruptions and syncs back to the cloud automatically when you're back in range.</p>
+        <ul class="checklist">
+          <li><i class="fa-solid fa-check"></i> Set up an event in under a minute</li>
+          <li><i class="fa-solid fa-check"></i> Share scoring duties with your committee</li>
+          <li><i class="fa-solid fa-check"></i> Free to download and use</li>
+        </ul>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- Clarity Section -->
-<div class="w3-padding-64 w3-light-grey">
-  <div class="w3-row-padding">
-    <div class="w3-col l4 m6">
-      <img class="w3-image w3-round-large w3-hide-small w3-grayscale" src="images/event_view_screenshot.png" alt="App" width="335" height="471">
+<!-- How it works -->
+<section id="how">
+  <div class="container center">
+    <span class="eyebrow reveal">How it works</span>
+    <h2 class="section-title reveal">From start gun to standings in three steps</h2>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3>Create your event</h3>
+        <p>Add the dates, classes and location. Competitors can start entering right away.</p>
+      </div>
+      <div class="step reveal" style="--delay:.15s">
+        <div class="step-num">2</div>
+        <h3>Score on the water</h3>
+        <p>Tap in finishes as boats cross the line, even with several scorers at once.</p>
+      </div>
+      <div class="step reveal" style="--delay:.3s">
+        <div class="step-num">3</div>
+        <h3>Share the results</h3>
+        <p>Standings update live for everyone. Head in and enjoy the post-race refreshments.</p>
+      </div>
     </div>
-    <div class="w3-col l8 m6">
-      <h1 class="w3-xxxlarge w3-text-red"><b>Everything in the cloud</b></h1>
-      <p>All data is captured in the cloud in real time. Multiple users can enter data simultaneously and everyone sees the latest updates.
-        Data is cached locally in case of network interruptions and will sync with the cloud when connectivity is restored.</p>
+  </div>
+</section>
+
+<!-- Download -->
+<div class="cta" id="download">
+  <div class="container">
+    <div class="cta-box reveal">
+      <img class="sail one" src="images/regattastudio.png" alt="">
+      <img class="sail two" src="images/regattastudio.png" alt="">
+      <h2>Ready to make scoring a breeze?</h2>
+      <p>Regatta Studio is free to download and use. Get it on your phone today.</p>
+      <div class="stores">
+        <a href="https://apps.apple.com/app/regatta-studio/id1552617490">
+          <img src="images/apple_app_store.png" alt="Download on the App Store" width="506" height="150">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=studio.regatta">
+          <img src="images/google_play.png" alt="Get it on Google Play" width="504" height="150">
+        </a>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Footer -->
-<footer class="w3-container w3-padding-32 w3-light-grey w3-center w3-xlarge">
-  <div class="w3-section">
-    <a href="https://www.instagram.com/regatta.studio/"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+<footer class="footer">
+  <div class="container">
+    <a class="brand" href="#top"><img src="images/regattastudio.png" alt="">Regatta Studio</a>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+      <span>A <a href="https://2hd.io">2hd LLC</a> production</span>
+      <a class="social" href="https://www.instagram.com/regatta.studio/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    </div>
   </div>
-  <p class="w3-medium">A <a href="https://2hd.io" class="w3-hover-text-green">2hd LLC</a> production</p>
 </footer>
 
 <script>
-// Slideshow
-var slideIndex = 1;
-//showDivs(slideIndex);
-showSlides();
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
+  // Nav background on scroll
+  var nav = document.getElementById('nav');
+  function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
+  // Hero slideshow
+  var slides = document.querySelectorAll('.hero-slides img');
+  var dotsEl = document.getElementById('heroDots');
+  var current = 0;
+  var timer;
+
+  slides.forEach(function (_, i) {
+    var dot = document.createElement('button');
+    dot.setAttribute('aria-label', 'Show photo ' + (i + 1));
+    dot.addEventListener('click', function () { showSlide(i); restart(); });
+    dotsEl.appendChild(dot);
+  });
+  var dots = dotsEl.children;
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
   }
-  x[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 2000);
-}
-
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+  function restart() {
+    clearInterval(timer);
+    if (!reduceMotion) timer = setInterval(function () { showSlide(current + 1); }, 7000);
   }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 10000); // Change image every 2 seconds
-}
+  dots[0].classList.add('active');
+  restart();
+
+  // Rotating headline word
+  var words = document.querySelectorAll('#rotator span');
+  var w = 0;
+  if (!reduceMotion) {
+    setInterval(function () {
+      var prev = words[w];
+      prev.classList.remove('active');
+      prev.classList.add('leaving');
+      setTimeout(function () { prev.classList.remove('leaving'); }, 500);
+      w = (w + 1) % words.length;
+      words[w].classList.add('active');
+    }, 2400);
+  }
+
+  // Reveal on scroll
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('visible'); });
+  }
+})();
 </script>
 
 </body>

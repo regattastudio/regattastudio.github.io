@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSWVYXKC6G"></script>
@@ -14,43 +14,44 @@
 <title>Regatta Studio Results</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#008080">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/css/styles.css">
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
 
-<style>
-body,h1,h2,h3,h4,h5 {font-family: 'roboto', sans-serif}
-body {font-size: 16px;}
-img {margin-bottom: -8px;}
-.mySlides {display: none;}
-</style>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 </head>
 
-<body class="w3-content">
+<body class="page">
 
-<div class="w3-padding-large">
-    <h1 id="eventName" class="w3-center"></h1>
-    <h2 id="eventLocation" class="w3-center"></h2>
-    <h3 id="eventDates" class="w3-center"></h3>
-</div>
-<div class="w3-responsive" id="resultsTable"></div>
-<script src="/scripts/app.js"></script>
-<br>
-
-<div class="w3-container w3-teal w3-round">
-    <p>Results by <a target="blank" href="https://regatta.studio">Regatta Studio</a></p>
+<header class="page-header">
+  <div class="container">
+    <a class="brand" href="https://regatta.studio"><img src="/images/regattastudio.png" alt="">Regatta Studio</a>
+    <h1 id="eventName"></h1>
+    <h2 id="eventLocation"></h2>
+    <h3 id="eventDates"></h3>
   </div>
+</header>
+
+<main class="page-body">
+  <div class="container">
+    <div class="panel" id="resultsTable"></div>
+    <script src="/scripts/app.js"></script>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span>Results by <a target="_blank" href="https://regatta.studio">Regatta Studio</a></span>
+    <a href="https://regatta.studio">Get the free app &rarr;</a>
+  </div>
+</footer>
 
 </body>
 </html>

@@ -38,7 +38,7 @@
     var dayName = '';
 
     if (!eventId) {
-        return resultsTableDiv.innerHTML = 'Invalid search query';
+        return resultsTableDiv.innerHTML = '<div class="notice">Invalid search query</div>';
     }
 
     if (!dayFilter) {
@@ -68,6 +68,28 @@
     });
 
 
+    // Delegated so it keeps working after live updates re-render the tables
+    function revealPoints(cell) {
+        clearTimeout(cell.revealTimer);
+        cell.classList.add('show-points');
+        cell.revealTimer = setTimeout(function () {
+            cell.classList.remove('show-points');
+        }, 1500);
+    }
+
+    resultsTableDiv.addEventListener('click', function (e) {
+        var cell = e.target.closest('.abbr');
+        if (cell) revealPoints(cell);
+    });
+
+    resultsTableDiv.addEventListener('keydown', function (e) {
+        var cell = e.target.closest('.abbr');
+        if (cell && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            revealPoints(cell);
+        }
+    });
+
     firestore.collection("events").doc(eventId).collection("results").doc(dayFilter).onSnapshot(function (doc) {
         var resultsTable = '';
 
@@ -95,32 +117,32 @@
 
                 console.log(classResults);
 
-                resultsTable += `<h3 class="w3-padding-small">${className}${dayName}</h3>`;
-                resultsTable += '<table class="w3-table-all"><tr><th>Pos</th><th>Name</th>';
+                resultsTable += `<h3 class="class-title">${className}${dayName}</h3>`;
+                resultsTable += '<div class="table-wrap"><table class="results-table"><thead><tr><th>Pos</th><th>Name</th>';
                 if (!hideSailNumber) {
-                    resultsTable += '<th class="w3-hide-small">Sail Number</th>';
+                    resultsTable += '<th class="hide-sm">Sail Number</th>';
                 }
                 if (!hideClub) {
-                    resultsTable += '<th class="w3-hide-small w3-hide-medium">Club</th>';
+                    resultsTable += '<th class="hide-md">Club</th>';
                 }
 
                 if (classResults.num_days != null) {
                     for (var i = 0; i < classResults.num_days; i++) {
-                        resultsTable += `<th style="text-align: center">D${i+1}</th>`;
+                        resultsTable += `<th class="score">D${i+1}</th>`;
                     }
                 } else {
                     for (var i = 0; i < classResults.num_races; i++) {
-                        resultsTable += `<th style="text-align: center">R${i+1}</th>`;
+                        resultsTable += `<th class="score">R${i+1}</th>`;
                     }
                 }
 
-                resultsTable += '<th style="text-align: center">Points</th></tr>'
+                resultsTable += '<th class="score">Points</th></tr></thead><tbody>'
 
 
                 for (var competitor of classResults.competitors) {
                     resultsTable += '<tr>';
 
-                    resultsTable += `<td style="width:50px"><div class="w3-teal w3-circle w3-center">${competitor.position}</div></td><td>${competitor.skipper}`;
+                    resultsTable += `<td style="width:50px"><div class="pos-badge pos-${competitor.position}">${competitor.position}</div></td><td>${competitor.skipper}`;
                     
                     if (competitor.crew) {
                         for (crew of competitor.crew.slice(0,10)) {
@@ -129,30 +151,36 @@
                     }
 
                     if (!hideSailNumber) {
-                        resultsTable += `</td><td class="w3-hide-small">${competitor.sail_number}</td>`
+                        resultsTable += `</td><td class="hide-sm">${competitor.sail_number}</td>`
                     }
 
                     if (!hideClub) {
-                        resultsTable += `<td class="w3-hide-small w3-hide-medium">${competitor.club}</td>`;
+                        resultsTable += `<td class="hide-md">${competitor.club}</td>`;
                     }
 
                     for (var score of competitor.scores) {
-                        resultsTable += score.discard ? `<td style="text-decoration:line-through; text-align: center">` : `<td style="text-align: center">`;
                         formattedScore = Number.isInteger(score.points) ? score.points.toFixed(0) : score.points.toFixed(1);
-                        resultsTable += score.abbreviations && score.abbreviations.length > 0 ? score.abbreviations.join('<br>') : formattedScore;
+                        var scoreClass = score.discard ? 'score discard' : 'score';
+                        if (score.abbreviations && score.abbreviations.length > 0) {
+                            // Tapping an abbreviation briefly reveals the points behind it
+                            resultsTable += `<td class="${scoreClass} abbr" tabindex="0" title="${formattedScore} pts">`;
+                            resultsTable += `<span class="abbr-flip"><span class="abbr-code">${score.abbreviations.join('<br>')}</span><span class="abbr-points">${formattedScore}</span></span>`;
+                        } else {
+                            resultsTable += `<td class="${scoreClass}">${formattedScore}`;
+                        }
                         resultsTable += '</td>';
 
                     }
 
-                    resultsTable += `<td style="text-align: center; font-weight: bold">${Number.isInteger(competitor.net_total) ? competitor.net_total.toFixed(0) : competitor.net_total.toFixed(1)}</td>`;
+                    resultsTable += `<td class="total">${Number.isInteger(competitor.net_total) ? competitor.net_total.toFixed(0) : competitor.net_total.toFixed(1)}</td>`;
                     resultsTable += '</tr>';
                 }
 
-                resultsTable += '</table><br>';
+                resultsTable += '</tbody></table></div>';
                 resultsTableDiv.innerHTML = resultsTable;
             }
         } else {
-            resultsTableDiv.innerHTML = `<div class="w3-container w3-amber w3-padding-large">No results found for ${day}</div>`;
+            resultsTableDiv.innerHTML = `<div class="notice">No results found for ${dayFilter}</div>`;
         }
     });
 })();
